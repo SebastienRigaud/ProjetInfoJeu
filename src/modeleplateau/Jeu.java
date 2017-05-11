@@ -12,17 +12,19 @@ public class Jeu implements Runnable {
 
 	@Override
 	public void run() {
-		
-		try {
-			Thread.sleep(1000);
-			Piece pc = pl.getPieceCourante();
-			boolean Ok = pc.translation(Translation.BAS,pl.getGrille());
-			if(Ok){
-				pl.setPiece(pc);
+		while(true){
+
+			try {
+				Thread.sleep(1000);
+				Piece pc = pl.getPieceCourante();
+				boolean Ok = pc.translation(Translation.BAS,pl.getGrille());
+				if(Ok){
+					pl.setPiece(pc);
+				}
+				
+			} catch (InterruptedException e) {
+				e.printStackTrace();
 			}
-			
-		} catch (InterruptedException e) {
-			e.printStackTrace();
 		}
 		
 

@@ -18,7 +18,7 @@ public class Piece {
 	
 
 	public Piece(){
-		int rand = (int) (Math.random() * 7);
+		int rand = (int) (Math.random() * 7)+1;
 		coordy = 0;
 		switch(rand){
 			//Barre
@@ -104,7 +104,7 @@ public class Piece {
 				for(int i = 0; i<taille;i++){
 					coordDroite = -1;
 					for(int j = taille-1; j>1;j--){
-						if(cases[j][i] != null && coordDroite != -1){
+						if(cases[j][i] != null && coordDroite == -1){
 							coordDroite = j;
 						}
 					}
@@ -123,7 +123,7 @@ public class Piece {
 				for(int i = 0; i<taille;i++){
 					coordGauche = -1;
 					for(int j = 0; j<taille;j++){
-						if(cases[j][i] != null && coordGauche != -1){
+						if(cases[j][i] != null && coordGauche == -1){
 							coordGauche = j;
 						}
 					}
@@ -141,13 +141,13 @@ public class Piece {
 				int coordBas;
 				for(int i = 0; i<taille;i++){
 					coordBas = -1;
-					for(int j = taille-1; j>1;j--){
-						if(cases[i][j] != null && coordBas != -1){
+					for(int j = taille-1; j>=0;j--){
+						if(cases[j][i] != null && coordBas == -1){
 							coordBas = j;
 						}
 					}
 					if(coordBas != -1){
-						if(coordBas+coordy == grille.getNbLignes()-1 || grilleJeu[coordx+i][coordy+coordBas-1] != null){
+						if(coordBas+coordy == grille.getNbLignes()-1 || grilleJeu[coordy+coordBas+1][coordx+i] != null){
 							return false;
 						}
 					}
