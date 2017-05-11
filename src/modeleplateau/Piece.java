@@ -1,8 +1,10 @@
 package modeleplateau;
 
+
 import java.util.Observable;
 
 import javafx.beans.InvalidationListener;
+import javafx.scene.paint.Color;
 
 
 
@@ -10,8 +12,8 @@ public class Piece {
 	private Case[][] cases;
 	private int coordx;
 	private int coordy;
+	private Color color;
 	
-
 	private int taille;
 	
 
@@ -21,9 +23,10 @@ public class Piece {
 		switch(rand){
 			//Barre
 			case 1:
+				color = Color.CYAN;
 				cases = new Case[][]{
 					{null,null,null,null},
-					{new Case("cyan"),new Case("cyan"),new Case("cyan"),new Case("cyan")},
+					{new Case(color),new Case(color),new Case(color),new Case(color)},
 					{null,null,null,null},
 					{null,null,null,null}
 				};
@@ -31,53 +34,59 @@ public class Piece {
 				break;
 			//Carré
 			case 2:
+				color = Color.YELLOW;
 				cases = new Case[][]{
-					{new Case("yellow"),new Case("yellow")},
-					{new Case("yellow"),new Case("yellow")}
+					{new Case(color),new Case(color)},
+					{new Case(color),new Case(color)}
 				};
 				taille = 2;
 				break;
 			//T
 			case 3:
+				color = Color.MAGENTA;
 				cases = new Case[][]{
-					{new Case("magenta"),new Case("magenta"),new Case("magenta")},
-					{null,new Case("magenta"),null},
+					{new Case(color),new Case(color),new Case(color)},
+					{null,new Case(color),null},
 					{null,null,null}
 				};
 				taille = 3;
 				break;
 			//L
 			case 4:
+				color = Color.ORANGE;
 				cases = new Case[][]{
-					{new Case("orange"),new Case("orange"),new Case("orange")},
-					{new Case("orange"),null,null},
+					{new Case(color),new Case(color),new Case(color)},
+					{new Case(color),null,null},
 					{null,null,null}
 				};
 				taille = 3;
 				break;
 			//L inversé
 			case 5:
+				color = Color.BLUE;
 				cases = new Case[][]{
-					{new Case("blue"),new Case("blue"),new Case("blue")},
-					{null,null,new Case("blue")},
+					{new Case(color),new Case(color),new Case(color)},
+					{null,null,new Case(color)},
 					{null,null,null}
 				};
 				taille = 3;
 				break;
 			//Biais
 			case 6:
+				color = Color.RED;
 				cases = new Case[][]{
-					{new Case("red"),new Case("red"),null},
-					{null,new Case("red"),new Case("red")},
+					{new Case(color),new Case(color),null},
+					{null,new Case(color),new Case(color)},
 					{null,null,null}
 				};
 				taille = 3;
 				break;
 			//Biais inversé
 			case 7:
+				color = Color.GREEN;
 				cases = new Case[][]{
-					{null,new Case("green"),new Case("green")},
-					{new Case("green"),new Case("green"),null},
+					{null,new Case(color),new Case(color)},
+					{new Case(color),new Case(color),null},
 					{null,null,null}
 				};
 				taille = 3;
@@ -235,5 +244,15 @@ public class Piece {
 	public void setCoordy(int coordy) {
 		this.coordy = coordy;
 	}
+	
+
+	public Color getColor() {
+		return color;
+	}
+
+	public void setColor(Color color) {
+		this.color = color;
+	}
+
 
 }
