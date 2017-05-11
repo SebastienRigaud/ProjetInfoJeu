@@ -45,11 +45,8 @@ public class VuePlateau extends Application implements Observer {
 	@Override
 	public void start(Stage primaryStage) {
 
-		// gestion du placement (permet de palcer le champ Text affichage en
-		// haut, et GridPane gPane au centre)
 		border = new BorderPane();
 
-		// permet de placer les diffrents boutons dans une grille
 		gPane = new GridPane();
 
 		plateau = new Plateau();
@@ -61,7 +58,6 @@ public class VuePlateau extends Application implements Observer {
 		int column = grille.getNbColonnes();
 		int row = grille.getNbLignes();
 
-		// création des bouton et placement dans la grille
 		for (int i = 0; i < column; i++) {
 			for (int j = 0; j < row; j++) {
 				gPane.add(new Rectangle(40, 40), i, j);
