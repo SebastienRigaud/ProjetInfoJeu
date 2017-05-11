@@ -25,8 +25,10 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
+import modeleplateau.Case;
 import modeleplateau.Grille;
 import modeleplateau.Jeu;
+import modeleplateau.Piece;
 import modeleplateau.Plateau;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -58,9 +60,9 @@ public class VuePlateau extends Application implements Observer {
 		int column = grille.getNbColonnes();
 		int row = grille.getNbLignes();
 
-		for (int i = 0; i < column; i++) {
-			for (int j = 0; j < row; j++) {
-				gPane.add(new Rectangle(40, 40), i, j);
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
+				gPane.add(new Rectangle(40, 40), j, i);
 			}
 
 		}
@@ -92,16 +94,36 @@ public class VuePlateau extends Application implements Observer {
 	public void update(Observable o, Object arg) {
 		Plateau pll = (Plateau)o;
 		Grille grille = pll.getGrille();
+		
 		int column = grille.getNbColonnes();
 		int row = grille.getNbLignes();
+		
+		Piece pc = pll.getPieceCourante();
+		Case[][] cases = pc.getCases();
+		int coordx = pc.getCoordx();
+		int coordy = pc.getCoordy();
+		
 
-		// création des bouton et placement dans la grille
-		for (int i = 0; i < column; i++) {
-			for (int j = 0; j < row; j++) {
+		// GARDER LA BOUCLE 
+		for (int i = 0; i < row; i++) {
+			for (int j = 0; j < column; j++) {
 				((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.AQUA);
 			}
 
 		}
+		
+		
+		for (int i = pc.getCoordy(); i < row; i++) {
+			for (int j = pc.getCoordx(); j < column; j++) {
+				if(j - pc.getCoordx() >= pc.getTaille() || i - pc.getCoordy() >= pc.getTaille())
+					continue;
+				if(pc.getCases()[i - pc.getCoordy()][j - pc.getCoordx()] != null)
+					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.YELLOW);
+			}
+
+		}
+		
+		
 		System.out.println("test");
 		
 	}

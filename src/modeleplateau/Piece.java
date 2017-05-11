@@ -10,8 +10,11 @@ public class Piece {
 	private Case[][] cases;
 	private int coordx;
 	private int coordy;
+	
+
 	private int taille;
 	
+
 	public Piece(){
 		int rand = (int) (Math.random() * 7);
 		coordy = 0;
@@ -198,5 +201,39 @@ public class Piece {
 			for (int j=0;j<m; j++)
 				output [m-1-j][i] = input[i][j];
 		return output;
+	
 	}
+	
+	public int getTaille() {
+		return taille;
+	}
+
+	public void setTaille(int taille) {
+		this.taille = taille;
+	}
+	
+	public Case[][] getCases() {
+		return cases;
+	}
+
+	public void setCases(Case[][] cases) {
+		this.cases = cases;
+	}
+	
+	public int getCoordx() {
+		return coordx;
+	}
+
+	public void setCoordx(int coordx) {
+		this.coordx = coordx;
+	}
+
+	public int getCoordy() {
+		return coordy;
+	}
+
+	public void setCoordy(int coordy) {
+		this.coordy = coordy;
+	}
+
 }
