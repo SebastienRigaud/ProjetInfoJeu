@@ -10,10 +10,14 @@ public class Piece {
 	private Case[][] cases;
 	private int coordx;
 	private int coordy;
+	
+
 	private int taille;
 	
+
 	public Piece(){
-		int rand = (int) (Math.random() * 7);
+//		int rand = (int) (Math.random() * 7);
+		int rand =3;
 		coordy = 0;
 		switch(rand){
 			//Barre
@@ -136,5 +140,36 @@ public class Piece {
 		return true;
 	}
 
+	public int getTaille() {
+		return taille;
+	}
+
+	public void setTaille(int taille) {
+		this.taille = taille;
+	}
+	
+	public Case[][] getCases() {
+		return cases;
+	}
+
+	public void setCases(Case[][] cases) {
+		this.cases = cases;
+	}
+	
+	public int getCoordx() {
+		return coordx;
+	}
+
+	public void setCoordx(int coordx) {
+		this.coordx = coordx;
+	}
+
+	public int getCoordy() {
+		return coordy;
+	}
+
+	public void setCoordy(int coordy) {
+		this.coordy = coordy;
+	}
 
 }
