@@ -21,6 +21,7 @@ public class Jeu implements Runnable {
 				if(Ok){
 					pl.setPiece(pc);
 				}
+				System.out.println("POUR LE COMMIT");
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
