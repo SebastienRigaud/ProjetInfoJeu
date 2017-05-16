@@ -165,11 +165,11 @@ public class Piece {
 				
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
-						if(taille-1-i+coordy >= grille.getNbLignes() || j+coordx >= grille.getNbColonnes() ||
-								j+coordx < 0){
+						if(j+coordy >= grille.getNbLignes() || taille-1-i+coordx >= grille.getNbColonnes() ||
+								taille-1-i+coordx < 0){
 							return false;
 						}
-						if(cases[j][i] != null && grilleJeu[taille-1-i+coordy][j+coordx]!=null){
+						if(cases[i][j] != null && grilleJeu[j+coordy][taille-1-i+coordx]!=null){
 							return false;
 						}
 					}
@@ -180,11 +180,11 @@ public class Piece {
 			case GAUCHE:
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
-						if(i+coordy >= grille.getNbLignes() || taille-1-j+coordx >= grille.getNbColonnes() ||
-								taille-1-j+coordx < 0){
+						if(taille-1-j+coordy >= grille.getNbLignes() || i+coordx >= grille.getNbColonnes() ||
+								i+coordx < 0){
 							return false;
 						}
-						if(cases[j][i] != null && grilleJeu[i+coordy][taille-1-j+coordx]!=null){
+						if(cases[i][j] != null && grilleJeu[taille-1-j+coordy][i+coordx]!=null){
 							return false;
 						}
 					}
