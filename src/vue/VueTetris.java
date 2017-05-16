@@ -4,7 +4,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package mvc;
+package vue;
 
 import java.util.Observable;
 import java.util.Observer;
@@ -25,11 +25,11 @@ import javafx.scene.paint.Paint;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
-import modeleplateau.Case;
-import modeleplateau.Grille;
-import modeleplateau.Jeu;
-import modeleplateau.Piece;
-import modeleplateau.Plateau;
+import librairie.Case;
+import librairie.Grille;
+import librairie.Piece;
+import librairie.Plateau;
+import modele.JeuTetris;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
 
@@ -37,12 +37,13 @@ import javafx.scene.text.TextAlignment;
  *
  * @author freder
  */
-public class VuePlateau extends Application implements Observer {
+public class VueTetris extends Application implements Observer {
 
 	private Plateau plateau;
 	private Scene scene;
 	private GridPane gPane;
 	private BorderPane border;
+	
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -72,8 +73,9 @@ public class VuePlateau extends Application implements Observer {
 		border.setCenter(gPane);
 
 		scene = new Scene(border, Color.LIGHTBLUE);
+		scene.setOnKeyPressed(plateau.getKeyInput());
 
-		Jeu jeu = new Jeu(plateau);
+		JeuTetris jeu = new JeuTetris(plateau);
 		
 		primaryStage.setTitle("Tetris");
 		primaryStage.setScene(scene);

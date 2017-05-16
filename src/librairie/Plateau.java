@@ -1,15 +1,55 @@
-package modeleplateau;
+package librairie;
+
+import javafx.event.Event;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyEvent;
 
 import java.util.Observable;
+
+import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
 public class Plateau extends Observable {
 	
 	private Piece piece;
 	private Grille grille;
-	
+	private EventHandler<KeyEvent> keyInput;
+
 	public Plateau(){
 		this.setPiece(new Piece());
 		this.grille = new Grille();
+		
+		
+		this.keyInput = new EventHandler<KeyEvent>(){
+
+			@Override
+			public void handle(KeyEvent event) {
+				switch (event.getCode()){
+				
+				case DOWN:
+					piece.translation(Translation.BAS, grille);
+					break;
+				case LEFT:
+					piece.translation(Translation.GAUCHE, grille);
+					break;
+				case RIGHT:
+					piece.translation(Translation.DROITE, grille);
+					break;
+				case UP:
+					piece.translation(Translation.BAS, grille);
+					break;
+				case A:
+					piece.rotation(Rotation.GAUCHE, grille);
+					break;
+				case Z:
+					piece.rotation(Rotation.DROITE, grille);
+					break;
+	
+				}
+				
+				
+			}
+
+		};
 	}
 
 	public Grille getGrille() {
@@ -33,6 +73,14 @@ public class Plateau extends Observable {
 
 	public Piece getPieceCourante() {
 		return this.getPiece();
+	}
+	
+	public EventHandler<KeyEvent> getKeyInput() {
+		return keyInput;
+	}
+
+	public void setKeyInput(EventHandler<KeyEvent> keyInput) {
+		this.keyInput = keyInput;
 	}
 
 	public void addPieceToGrille() {

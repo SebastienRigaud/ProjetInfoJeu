@@ -1,4 +1,4 @@
-package modeleplateau;
+package librairie;
 
 public class Grille {
 	

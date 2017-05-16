@@ -1,4 +1,4 @@
-package modeleplateau;
+package librairie;
 
 
 import java.util.Observable;
