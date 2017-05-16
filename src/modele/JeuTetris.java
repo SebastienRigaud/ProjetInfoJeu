@@ -37,7 +37,7 @@ public class JeuTetris implements Runnable {
 			}
 		}
 
-		System.out.println("You Lose!!");
+		System.out.println("You Lose!!!");
 		
 		
 
