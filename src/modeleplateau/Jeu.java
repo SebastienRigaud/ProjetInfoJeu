@@ -12,16 +12,20 @@ public class Jeu implements Runnable {
 
 	@Override
 	public void run() {
+		boolean Ok;
 		while(true){
 
 			try {
 				Thread.sleep(1000);
 				Piece pc = pl.getPieceCourante();
-				boolean Ok = pc.translation(Translation.BAS,pl.getGrille());
+				Ok = pc.translation(Translation.BAS,pl.getGrille());
 				if(Ok){
 					pl.setPiece(pc);
 				}
-				System.out.println("POUR LE COMMIT");
+				else {
+					pl.setPiece(new Piece());
+				}
+				System.out.println("Thread running");
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();

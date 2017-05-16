@@ -107,7 +107,7 @@ public class VuePlateau extends Application implements Observer {
 		// GARDER LA BOUCLE 
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.AQUA);
+				((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.WHITE);
 			}
 
 		}
@@ -118,7 +118,7 @@ public class VuePlateau extends Application implements Observer {
 				if(j - pc.getCoordx() >= pc.getTaille() || i - pc.getCoordy() >= pc.getTaille())
 					continue;
 				if(pc.getCases()[i - pc.getCoordy()][j - pc.getCoordx()] != null)
-					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.YELLOW);
+					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(pc.getColor());
 			}
 
 		}
