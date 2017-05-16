@@ -92,7 +92,7 @@ public class Piece {
 				taille = 3;
 				break;
 		}
-		coordx = 0;
+		coordx = 7-taille;
 	}
 	
 	public boolean translation(Translation t, Grille grille){
@@ -165,6 +165,10 @@ public class Piece {
 				
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
+						if(taille-1-i+coordy >= grille.getNbLignes() || j+coordx >= grille.getNbColonnes() ||
+								j+coordx < 0){
+							return false;
+						}
 						if(cases[j][i] != null && grilleJeu[taille-1-i+coordy][j+coordx]!=null){
 							return false;
 						}
@@ -176,6 +180,10 @@ public class Piece {
 			case GAUCHE:
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
+						if(i+coordy >= grille.getNbLignes() || taille-1-j+coordx >= grille.getNbColonnes() ||
+								taille-1-j+coordx < 0){
+							return false;
+						}
 						if(cases[j][i] != null && grilleJeu[i+coordy][taille-1-j+coordx]!=null){
 							return false;
 						}
