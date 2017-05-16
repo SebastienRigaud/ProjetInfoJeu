@@ -94,6 +94,7 @@ public class VuePlateau extends Application implements Observer {
 	public void update(Observable o, Object arg) {
 		Plateau pll = (Plateau)o;
 		Grille grille = pll.getGrille();
+		Case[][] cases_grille = grille.getCases();
 		
 		int column = grille.getNbColonnes();
 		int row = grille.getNbLignes();
@@ -107,7 +108,11 @@ public class VuePlateau extends Application implements Observer {
 		// GARDER LA BOUCLE 
 		for (int i = 0; i < row; i++) {
 			for (int j = 0; j < column; j++) {
-				((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.WHITE);
+				if(cases_grille[i][j] != null){
+					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(cases_grille[i][j].getColor());
+				}else{
+					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(Color.WHITE);
+				}
 			}
 
 		}

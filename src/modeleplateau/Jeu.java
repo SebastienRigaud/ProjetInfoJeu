@@ -16,13 +16,15 @@ public class Jeu implements Runnable {
 		while(true){
 
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(100);
 				Piece pc = pl.getPieceCourante();
 				Ok = pc.translation(Translation.BAS,pl.getGrille());
 				if(Ok){
 					pl.setPiece(pc);
 				}
 				else {
+					pl.addPieceToGrille();
+					//pl.checkLines();
 					pl.setPiece(new Piece());
 				}
 				System.out.println("Thread running");
