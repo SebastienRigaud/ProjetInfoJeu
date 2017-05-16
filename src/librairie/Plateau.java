@@ -45,6 +45,8 @@ public class Plateau extends Observable {
 					break;
 	
 				}
+				setChanged();
+				notifyObservers();
 				
 				
 			}
@@ -60,19 +62,15 @@ public class Plateau extends Observable {
 		this.grille = grille;
 	}
 
-	public Piece getPiece() {
-		return piece;
-	}
-
-	public void setPiece(Piece piece) {
+	public synchronized void setPiece(Piece piece) {
 		this.piece = piece;
 		setChanged();
 		notifyObservers();
 		
 	}
 
-	public Piece getPieceCourante() {
-		return this.getPiece();
+	public synchronized Piece getPieceCourante() {
+		return piece;
 	}
 	
 	public EventHandler<KeyEvent> getKeyInput() {

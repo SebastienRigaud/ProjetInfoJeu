@@ -20,7 +20,7 @@ public class JeuTetris implements Runnable {
 		while(true){
 
 			try {
-				Thread.sleep(500);
+				Thread.sleep(1000);
 				Piece pc = pl.getPieceCourante();
 				Ok = pc.translation(Translation.BAS,pl.getGrille());
 				if(Ok){
