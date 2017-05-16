@@ -3,7 +3,6 @@ package librairie;
 
 import java.util.Observable;
 
-import javax.swing.plaf.basic.BasicComboBoxUI.KeyHandler;
 
 public class Plateau extends Observable {
 	
