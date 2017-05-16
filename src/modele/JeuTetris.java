@@ -17,7 +17,7 @@ public class JeuTetris implements Runnable {
 	@Override
 	public void run() {
 		boolean Ok;
-		while(true){
+		while(pl.getPiece() != null){
 
 			try {
 				Thread.sleep(1000);
@@ -31,12 +31,14 @@ public class JeuTetris implements Runnable {
 					//pl.checkLines();
 					pl.setPiece(new Piece());
 				}
-				System.out.println("Thread running");
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
+
+		System.out.println("You Lose!!");
+		
 		
 
 	}

@@ -15,9 +15,9 @@ public class Plateau extends Observable {
 	private EventHandler<KeyEvent> keyInput;
 
 	public Plateau(){
-		this.setPiece(new Piece());
 		this.grille = new Grille();
-		
+		this.setPiece(new Piece());
+				
 		
 		this.keyInput = new EventHandler<KeyEvent>(){
 
@@ -62,13 +62,19 @@ public class Plateau extends Observable {
 		this.grille = grille;
 	}
 
-	public synchronized void setPiece(Piece piece) {
-		this.piece = piece;
-		setChanged();
-		notifyObservers();
-		
+	public Piece getPiece() {
+		return piece;
 	}
 
+	public synchronized void setPiece(Piece piece) {
+		if(!this.checkLose(piece)){
+			this.piece = piece;
+			setChanged();
+			notifyObservers();			
+		}else{
+			this.piece = null;
+		}
+	}
 	public synchronized Piece getPieceCourante() {
 		return piece;
 	}
@@ -121,6 +127,18 @@ public class Plateau extends Observable {
 				i++;
 			}
 		}
+	}
+	
+	public boolean checkLose(Piece piece){
+		for(int i=0; i<piece.getTaille(); i++){
+			for(int j=0; j<piece.getTaille(); j++){
+				if(piece.getCases()[j][i] != null 
+						&& this.getGrille().getCases()[j+piece.getCoordy()][i+piece.getCoordx()] != null){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
