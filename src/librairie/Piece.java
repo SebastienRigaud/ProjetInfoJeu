@@ -92,7 +92,7 @@ public class Piece {
 				taille = 3;
 				break;
 		}
-		coordx = 7-taille;
+		coordx = 0;
 	}
 	
 	public boolean translation(Translation t, Grille grille){
@@ -103,7 +103,7 @@ public class Piece {
 				int coordDroite;
 				for(int i = 0; i<taille;i++){
 					coordDroite = -1;
-					for(int j = taille-1; j>1;j--){
+					for(int j = taille-1; j>=0;j--){
 						if(cases[i][j] != null && coordDroite == -1){
 							coordDroite = j;
 						}
@@ -124,7 +124,7 @@ public class Piece {
 					coordGauche = -1;
 					for(int j = 0; j<taille;j++){
 						if(cases[i][j] != null && coordGauche == -1){
-							coordGauche = i;
+							coordGauche = j;
 						}
 					}
 					if(coordGauche != -1){
