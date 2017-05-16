@@ -118,7 +118,7 @@ public class Plateau extends Observable {
 			}
 			if(!oneEmpty){
 				//On baisse tous d'une ligne
-				for(int i_reverse = i; i_reverse<new_grille.getNbLignes()-1; i_reverse++){
+				for(int i_reverse = i; i_reverse>0; i_reverse--){
 					for(int j = 0; j<new_grille.getNbColonnes();j++){
 						cases[i_reverse][j] = cases[i_reverse-1][j];
 					}
