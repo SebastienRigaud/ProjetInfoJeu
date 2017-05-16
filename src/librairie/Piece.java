@@ -104,12 +104,12 @@ public class Piece {
 				for(int i = 0; i<taille;i++){
 					coordDroite = -1;
 					for(int j = taille-1; j>1;j--){
-						if(cases[j][i] != null && coordDroite == -1){
+						if(cases[i][j] != null && coordDroite == -1){
 							coordDroite = j;
 						}
 					}
 					if(coordDroite != -1){
-						if(coordDroite+coordx+1 == grille.getNbColonnes()-1 || grilleJeu[coordDroite+coordx+1][i+coordy] != null){
+						if(coordDroite+coordx+1 == grille.getNbColonnes() || grilleJeu[i+coordy][coordDroite+coordx+1] != null){
 							return false;
 						}
 					}
@@ -123,12 +123,12 @@ public class Piece {
 				for(int i = 0; i<taille;i++){
 					coordGauche = -1;
 					for(int j = 0; j<taille;j++){
-						if(cases[j][i] != null && coordGauche == -1){
-							coordGauche = j;
+						if(cases[i][j] != null && coordGauche == -1){
+							coordGauche = i;
 						}
 					}
 					if(coordGauche != -1){
-						if(coordGauche+coordx == 0 || grilleJeu[coordGauche+coordx-1][i+coordy] != null){
+						if(coordGauche+coordx == 0 || grilleJeu[i+coordy][coordGauche+coordx-1] != null){
 							return false;
 						}
 					}
@@ -165,7 +165,7 @@ public class Piece {
 				
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
-						if(cases[i][j] != null && grilleJeu[j+coordx][taille-1-i+coordy]!=null){
+						if(cases[j][i] != null && grilleJeu[taille-1-i+coordy][j+coordx]!=null){
 							return false;
 						}
 					}
@@ -176,7 +176,7 @@ public class Piece {
 			case GAUCHE:
 				for(int i=0; i<taille; i++){
 					for(int j=0; j<taille; j++){
-						if(cases[i][j] != null && grilleJeu[taille-1-j+coordx][i+coordy]!=null){
+						if(cases[j][i] != null && grilleJeu[i+coordy][taille-1-j+coordx]!=null){
 							return false;
 						}
 					}
