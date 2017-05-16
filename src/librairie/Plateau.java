@@ -1,8 +1,5 @@
 package librairie;
 
-import javafx.event.Event;
-import javafx.event.EventHandler;
-import javafx.scene.input.KeyEvent;
 
 import java.util.Observable;
 
@@ -12,46 +9,11 @@ public class Plateau extends Observable {
 	
 	private Piece piece;
 	private Grille grille;
-	private EventHandler<KeyEvent> keyInput;
 
 	public Plateau(){
 		this.grille = new Grille();
 		this.setPiece(new Piece());
 				
-		
-		this.keyInput = new EventHandler<KeyEvent>(){
-
-			@Override
-			public void handle(KeyEvent event) {
-				switch (event.getCode()){
-				
-				case DOWN:
-					piece.translation(Translation.BAS, grille);
-					break;
-				case LEFT:
-					piece.translation(Translation.GAUCHE, grille);
-					break;
-				case RIGHT:
-					piece.translation(Translation.DROITE, grille);
-					break;
-				case UP:
-					piece.translation(Translation.BAS, grille);
-					break;
-				case A:
-					piece.rotation(Rotation.GAUCHE, grille);
-					break;
-				case Z:
-					piece.rotation(Rotation.DROITE, grille);
-					break;
-	
-				}
-				setChanged();
-				notifyObservers();
-				
-				
-			}
-
-		};
 	}
 
 	public Grille getGrille() {
@@ -77,14 +39,6 @@ public class Plateau extends Observable {
 	}
 	public synchronized Piece getPieceCourante() {
 		return piece;
-	}
-	
-	public EventHandler<KeyEvent> getKeyInput() {
-		return keyInput;
-	}
-
-	public void setKeyInput(EventHandler<KeyEvent> keyInput) {
-		this.keyInput = keyInput;
 	}
 
 	public void addPieceToGrille() {
@@ -139,6 +93,38 @@ public class Plateau extends Observable {
 			}
 		}
 		return false;
+	}
+
+	public void movePiece(Translation type) {
+		switch(type) {
+			case BAS:
+				piece.translation(type, grille);
+				break;
+			case GAUCHE:
+				piece.translation(type, grille);
+				break;
+			case DROITE:
+				piece.translation(type, grille);
+				break;
+				
+		}
+		setChanged();
+		notifyObservers();
+		
+	}
+
+	public void rotatePiece(Rotation type) {
+		switch(type){
+			case GAUCHE:
+				piece.rotation(type, grille);
+				break;
+			case DROITE:
+				piece.rotation(type, grille);
+				break;
+		}
+		setChanged();
+		notifyObservers();
+		
 	}
 
 }

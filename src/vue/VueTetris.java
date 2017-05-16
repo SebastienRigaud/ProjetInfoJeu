@@ -16,7 +16,7 @@ import javafx.scene.effect.Blend;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.effect.Effect;
 import javafx.scene.effect.Shadow;
-
+import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
@@ -29,6 +29,8 @@ import librairie.Case;
 import librairie.Grille;
 import librairie.Piece;
 import librairie.Plateau;
+import librairie.Rotation;
+import librairie.Translation;
 import modele.JeuTetris;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
@@ -73,7 +75,33 @@ public class VueTetris extends Application implements Observer {
 		border.setCenter(gPane);
 
 		scene = new Scene(border, Color.LIGHTBLUE);
-		scene.setOnKeyPressed(plateau.getKeyInput());
+		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
+			
+			@Override
+			public void handle(KeyEvent event) {
+				switch (event.getCode()){
+				
+				case DOWN:
+					plateau.movePiece(Translation.BAS);
+					break;
+				case LEFT:
+					plateau.movePiece(Translation.GAUCHE);
+					break;
+				case RIGHT:
+					plateau.movePiece(Translation.DROITE);
+					break;
+				case UP:
+					plateau.movePiece(Translation.BAS);
+					break;
+				case A:
+					plateau.rotatePiece(Rotation.GAUCHE);
+					break;
+				case Z:
+					plateau.rotatePiece(Rotation.DROITE);
+					break;
+	
+				}}
+		});
 
 		JeuTetris jeu = new JeuTetris(plateau);
 		
