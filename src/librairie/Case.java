@@ -1,21 +1,21 @@
 package librairie;
 
-import javafx.scene.paint.Color;
-
 public class Case {
 
-	private Color color;
+	private Couleur color;
 	
-	public Case(Color color){
+	
+	public Case(Couleur color){
 		this.color = color;
 	}
 
 	
-	public Color getColor() {
+	public Couleur getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(Couleur color) {
 		this.color = color;
 	}
+	
 }

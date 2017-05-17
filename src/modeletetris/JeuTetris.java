@@ -1,4 +1,4 @@
-package modele;
+package modeletetris;
 
 import librairie.Piece;
 import librairie.Plateau;
@@ -6,9 +6,9 @@ import librairie.Translation;
 
 public class JeuTetris implements Runnable {
 	
-	private Plateau pl;
+	private PlateauTetris pl;
 	
-	public JeuTetris(Plateau pl){
+	public JeuTetris(PlateauTetris pl){
 		this.pl = pl;
 		(new Thread(this)).start();
 	}
@@ -17,7 +17,7 @@ public class JeuTetris implements Runnable {
 	@Override
 	public void run() {
 		boolean Ok;
-		while(pl.getPieceCourante() != null){
+		while(pl.getPieceCourante() != null && pl.isRunning()){
 
 			try {
 				Thread.sleep(1000);

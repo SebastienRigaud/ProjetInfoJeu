@@ -12,7 +12,7 @@ public class Piece {
 	private Case[][] cases;
 	private int coordx;
 	private int coordy;
-	private Color color;
+	private Couleur color;
 	
 	private int taille;
 	
@@ -23,7 +23,7 @@ public class Piece {
 		switch(rand){
 			//Barre
 			case 1:
-				color = Color.CYAN;
+				color = Couleur.CYAN;
 				cases = new Case[][]{
 					{null,null,null,null},
 					{new Case(color),new Case(color),new Case(color),new Case(color)},
@@ -34,7 +34,7 @@ public class Piece {
 				break;
 			//Carré
 			case 2:
-				color = Color.YELLOW;
+				color = Couleur.YELLOW;
 				cases = new Case[][]{
 					{new Case(color),new Case(color)},
 					{new Case(color),new Case(color)}
@@ -43,7 +43,7 @@ public class Piece {
 				break;
 			//T
 			case 3:
-				color = Color.MAGENTA;
+				color = Couleur.MAGENTA;
 				cases = new Case[][]{
 					{new Case(color),new Case(color),new Case(color)},
 					{null,new Case(color),null},
@@ -53,7 +53,7 @@ public class Piece {
 				break;
 			//L
 			case 4:
-				color = Color.ORANGE;
+				color = Couleur.ORANGE;
 				cases = new Case[][]{
 					{new Case(color),new Case(color),new Case(color)},
 					{new Case(color),null,null},
@@ -63,7 +63,7 @@ public class Piece {
 				break;
 			//L inversé
 			case 5:
-				color = Color.BLUE;
+				color = Couleur.BLUE;
 				cases = new Case[][]{
 					{new Case(color),new Case(color),new Case(color)},
 					{null,null,new Case(color)},
@@ -73,7 +73,7 @@ public class Piece {
 				break;
 			//Biais
 			case 6:
-				color = Color.RED;
+				color = Couleur.RED;
 				cases = new Case[][]{
 					{new Case(color),new Case(color),null},
 					{null,new Case(color),new Case(color)},
@@ -83,7 +83,7 @@ public class Piece {
 				break;
 			//Biais inversé
 			case 7:
-				color = Color.GREEN;
+				color = Couleur.GREEN;
 				cases = new Case[][]{
 					{null,new Case(color),new Case(color)},
 					{new Case(color),new Case(color),null},
@@ -254,11 +254,11 @@ public class Piece {
 	}
 	
 
-	public Color getColor() {
+	public Couleur getColor() {
 		return color;
 	}
 
-	public void setColor(Color color) {
+	public void setColor(Couleur color) {
 		this.color = color;
 	}
 

@@ -7,11 +7,14 @@ import java.util.Observable;
 public class Plateau extends Observable {
 	
 	private Piece piece;
-	private Grille grille;
+	protected Grille grille;
+	private boolean isRunning;
+
 
 	public Plateau(){
 		this.grille = new Grille();
 		this.setPiece(new Piece());
+		this.setRunning(true);
 				
 	}
 
@@ -26,6 +29,16 @@ public class Plateau extends Observable {
 	public Piece getPiece() {
 		return piece;
 	}
+
+	public boolean isRunning() {
+		return isRunning;
+	}
+
+	public void setRunning(boolean isRunning) {
+		this.isRunning = isRunning;
+	}
+
+
 
 	public synchronized void setPiece(Piece piece) {
 		if(!this.checkLose(piece)){
@@ -55,31 +68,6 @@ public class Plateau extends Observable {
 		}
 		new_grille.setCases(new_cases);
 		this.setGrille(new_grille);
-	}
-
-	public void checkLines() {
-		Grille new_grille = grille;
-		boolean oneEmpty;
-		Case[][] cases;
-		for(int i = new_grille.getNbLignes()-1; i>=0; i--){
-			oneEmpty = false;
-			cases = new_grille.getCases();
-			for(int j = 0; j<new_grille.getNbColonnes();j++){
-				if(cases[i][j] == null){
-					oneEmpty = true;
-				}
-			}
-			if(!oneEmpty){
-				//On baisse tout d'une ligne
-				for(int i_reverse = i; i_reverse>0; i_reverse--){
-					for(int j = 0; j<new_grille.getNbColonnes();j++){
-						cases[i_reverse][j] = cases[i_reverse-1][j];
-					}
-				}
-				new_grille.setCases(cases);
-				i++;
-			}
-		}
 	}
 	
 	public boolean checkLose(Piece piece){
