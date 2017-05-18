@@ -6,9 +6,9 @@ import java.util.Observable;
 
 public class Plateau extends Observable {
 	
-	private Piece piece;
+	protected Piece piece;
 	protected Grille grille;
-	private boolean isRunning;
+	protected boolean isRunning;
 
 
 	public Plateau(){

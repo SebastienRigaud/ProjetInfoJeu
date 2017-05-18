@@ -16,89 +16,16 @@ public class Piece {
 	
 	private int taille;
 	
-
 	public Piece(){
-		int rand = (int) (Math.random() * 7)+1;
-		coordy = 0;
-		switch(rand){
-			//Barre
-			case 1:
-				color = Couleur.CYAN;
-				cases = new Case[][]{
-					{null,null,null,null},
-					{new Case(color),new Case(color),new Case(color),new Case(color)},
-					{null,null,null,null},
-					{null,null,null,null}
-				};
-				taille = 4;
-				coordx = 3;
-				break;
-			//Carré
-			case 2:
-				color = Couleur.YELLOW;
-				cases = new Case[][]{
-					{new Case(color),new Case(color)},
-					{new Case(color),new Case(color)}
-				};
-				taille = 2;
-				coordx = 4;
-				break;
-			//T
-			case 3:
-				color = Couleur.MAGENTA;
-				cases = new Case[][]{
-					{new Case(color),new Case(color),new Case(color)},
-					{null,new Case(color),null},
-					{null,null,null}
-				};
-				taille = 3;
-				coordx = 4;
-				break;
-			//L
-			case 4:
-				color = Couleur.ORANGE;
-				cases = new Case[][]{
-					{new Case(color),new Case(color),new Case(color)},
-					{new Case(color),null,null},
-					{null,null,null}
-				};
-				taille = 3;
-				coordx = 4;
-				break;
-			//L inversé
-			case 5:
-				color = Couleur.BLUE;
-				cases = new Case[][]{
-					{new Case(color),new Case(color),new Case(color)},
-					{null,null,new Case(color)},
-					{null,null,null}
-				};
-				taille = 3;
-				coordx = 4;
-				break;
-			//Biais
-			case 6:
-				color = Couleur.RED;
-				cases = new Case[][]{
-					{new Case(color),new Case(color),null},
-					{null,new Case(color),new Case(color)},
-					{null,null,null}
-				};
-				taille = 3;
-				coordx = 4;
-				break;
-			//Biais inversé
-			case 7:
-				color = Couleur.GREEN;
-				cases = new Case[][]{
-					{null,new Case(color),new Case(color)},
-					{new Case(color),new Case(color),null},
-					{null,null,null}
-				};
-				taille = 3;
-				coordx = 4;
-				break;
-		}
+		
+	}
+	
+	public Piece(Case[][] cases, int coordx, int coordy, Couleur color, int taille){
+		this.cases = cases;
+		this.coordx=coordx;
+		this.coordy=coordy;
+		this.color=color;
+		this.taille = taille;
 	}
 	
 	public boolean translation(Translation t, Grille grille){

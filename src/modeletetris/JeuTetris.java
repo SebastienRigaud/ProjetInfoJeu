@@ -32,7 +32,7 @@ public class JeuTetris implements Runnable {
 					pl.addPieceToGrille();
 					pl.checkLines();
 					pl.setPiece(pl.getNextPiece());	
-					pl.setNextPiece(new Piece());
+					pl.setNextPiece();
 				}
 				
 				
