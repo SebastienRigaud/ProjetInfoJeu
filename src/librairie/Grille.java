@@ -7,31 +7,8 @@ public class Grille {
 	private int nbColonnes;
 	
 	
-	public Grille(){
-		cases = new Case[][]{
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null},
-			{null,null,null,null,null,null,null,null,null,null}
-		};
+	public Grille(int nbLigne, int nbColonne){
+		cases = new Case[nbLigne][nbColonne];
 		
 		this.setNbLignes(cases.length);
 		this.setNbColonnes(cases[0].length);

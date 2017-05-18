@@ -12,6 +12,7 @@ public class PlateauTetris extends Plateau {
 	
 	public PlateauTetris(){
 		super();
+		this.grille = new Grille(22,10);
 		this.setScore(0);
 		this.setNextPiece(new Piece());
 	}
@@ -58,6 +59,17 @@ public class PlateauTetris extends Plateau {
 				i++;
 			}
 		}
+	}
+	public boolean checkLose(Piece piece){
+		for(int i=0; i<piece.getTaille(); i++){
+			for(int j=0; j<piece.getTaille(); j++){
+				if(piece.getCases()[j][i] != null 
+						&& this.getGrille().getCases()[j+piece.getCoordy()][i+piece.getCoordx()] != null){
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
