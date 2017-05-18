@@ -36,6 +36,8 @@ public class Plateau extends Observable {
 
 	public void setRunning(boolean isRunning) {
 		this.isRunning = isRunning;
+		setChanged();
+		notifyObservers();
 	}
 
 

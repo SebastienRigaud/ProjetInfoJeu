@@ -40,7 +40,7 @@ public class JeuTetris implements Runnable {
 				e.printStackTrace();
 			}
 		}
-		
+		pl.setRunning(false);
 		System.out.println("You Lose!!!");
 		
 		

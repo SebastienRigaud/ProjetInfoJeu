@@ -26,6 +26,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Background;
+import javafx.scene.layout.BackgroundImage;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.GridPane;
@@ -36,6 +38,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.stage.Stage;
 import librairie.Case;
+import librairie.Couleur;
 import librairie.Grille;
 import librairie.Piece;
 import librairie.Plateau;
@@ -52,6 +55,7 @@ import javafx.scene.text.TextAlignment;
  */
 public class VueTetris extends Application implements Observer {
 
+	private Pane globalPane;
 	private PlateauTetris plateau;
 	private Scene scene;
 	private GridPane gPane;
@@ -70,6 +74,7 @@ public class VueTetris extends Application implements Observer {
 	@Override
 	public void start(Stage primaryStage) {
 
+		globalPane = new Pane();
 		border = new BorderPane();
 		gPane = new GridPane();
 		gPaneMenu = new BorderPane();
@@ -99,13 +104,13 @@ public class VueTetris extends Application implements Observer {
 		}
 
 		gPane.setGridLinesVisible(true);
-		gPaneMenu.setMinSize(300, 300);
+		//gPaneMenu.setMinSize(300, 300);
 		
 		scoreText = new Text("Score : ");
 		scoreText.setFont(new Font("Calibri",32));
 		gPaneMenu.setTop(scoreText);
 		
-		overText = new Text("");
+		overText = new Text("Game over");
 		overText.setFont(new Font("Calibri",32));
 		gPaneMenu.setBottom(overText);
 		overText.setVisible(false);
@@ -120,8 +125,15 @@ public class VueTetris extends Application implements Observer {
 		border.setCenter(gPane);
 		border.setRight(gPaneMenu);
 		border.setLeft(leftPane);
+		
+		globalPane.getChildren().add(border);
+		
+		Image backgroundImage = new Image("Ressources/tetris.jpeg");
+		BackgroundImage background = new BackgroundImage(backgroundImage,null,null,null,null);
+		Background back = new Background(background);
+		globalPane.setBackground(back);
 
-		scene = new Scene(border, Color.LIGHTGRAY);
+		scene = new Scene(globalPane, Color.LIGHTGRAY);
 		scene.setOnKeyPressed(new EventHandler<KeyEvent>() {
 			
 			@Override
@@ -172,7 +184,11 @@ public class VueTetris extends Application implements Observer {
 		PlateauTetris pll = (PlateauTetris)o;
 		Grille grille = pll.getGrille();
 		Case[][] cases_grille = grille.getCases();
-	
+		
+		if(!pll.isRunning()){
+			overText.setVisible(true);
+			return;
+		}
 		int column = grille.getNbColonnes();
 		int row = grille.getNbLignes();
 		
@@ -217,6 +233,51 @@ public class VueTetris extends Application implements Observer {
 			}
 		}
 		
+		Color color = computeColor(pc);
+		
+		for (int i = pc.getCoordy(); i < row; i++) {
+			for (int j = pc.getCoordx(); j < column; j++) {
+				if(j - pc.getCoordx() >= pc.getTaille() || i - pc.getCoordy() >= pc.getTaille())
+					continue;
+				if(pc.getCases()[i - pc.getCoordy()][j - pc.getCoordx()] != null)
+					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(color);
+			}
+		}
+		
+		Color colorHold = computeColor(nextPc);
+		
+		for (int i = 0; i < 16; i++) {
+			((Rectangle)holdPane.getChildren().get(i)).setFill(Color.WHITE);
+		}
+		
+		for (int i = 0; i < 4; i++) {
+			for (int j = 0; j < 4; j++) {
+				//((Rectangle)holdPane.getChildren().get(i+j)).setFill(Color.WHITE);
+				if(j>= nextPc.getTaille() || i>= nextPc.getTaille())
+					continue;
+				if(nextPc.getCases()[i][j] != null)
+					((Rectangle)holdPane.getChildren().get(4*i+j)).setFill(colorHold);
+					
+			}
+		}
+		
+		scoreText.setText("Score :"+ pll.getScore().toString());
+		
+		if(!pll.isRunning()){
+			overText.setVisible(true);
+			return;
+		}
+		
+			
+	}
+	
+	@Override
+	public void stop() throws Exception {
+		
+		plateau.setRunning(false);
+	}
+	
+	public Color computeColor(Piece pc){
 		Color color = null;
 		switch(pc.getColor()){
 		case BLUE:
@@ -242,69 +303,9 @@ public class VueTetris extends Application implements Observer {
 			break;
 		}
 		
-		for (int i = pc.getCoordy(); i < row; i++) {
-			for (int j = pc.getCoordx(); j < column; j++) {
-				if(j - pc.getCoordx() >= pc.getTaille() || i - pc.getCoordy() >= pc.getTaille())
-					continue;
-				if(pc.getCases()[i - pc.getCoordy()][j - pc.getCoordx()] != null)
-					((Rectangle)gPane.getChildren().get(column*i+j)).setFill(color);
-			}
-		}
 		
-		Color colorHold = null;
-		switch(nextPc.getColor()){
-		case BLUE:
-			colorHold = Color.BLUE;
-			break;
-		case  CYAN:
-			colorHold = Color.CYAN;
-			break;
-		case GREEN:
-			colorHold = Color.GREEN;
-			break;
-		case YELLOW:
-			colorHold = Color.YELLOW;
-			break;
-		case ORANGE:
-			colorHold = Color.ORANGE;
-			break;
-		case RED:
-			colorHold = Color.RED;
-			break;
-		case MAGENTA:
-			colorHold = Color.MAGENTA;
-			break;
-		}
+		return color;
 		
-		for (int i = 0; i < 16; i++) {
-			((Rectangle)holdPane.getChildren().get(i)).setFill(Color.WHITE);
-		}
-		
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 4; j++) {
-				//((Rectangle)holdPane.getChildren().get(i+j)).setFill(Color.WHITE);
-				if(j>= nextPc.getTaille() || i>= nextPc.getTaille())
-					continue;
-				if(nextPc.getCases()[i][j] != null)
-					((Rectangle)holdPane.getChildren().get(4*i+j)).setFill(colorHold);
-					
-			}
-		}
-		
-		scoreText.setText("Score :"+ pll.getScore().toString());
-		
-//		if(!pll.isRunning()){
-//			overText.setVisible(true);
-//			return;
-//		}
-		
-			
-	}
-	
-	@Override
-	public void stop() throws Exception {
-		
-		plateau.setRunning(false);
 	}
 
 }
