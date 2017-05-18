@@ -2,15 +2,18 @@ package modeletetris;
 
 import librairie.Case;
 import librairie.Grille;
+import librairie.Piece;
 import librairie.Plateau;
 
 public class PlateauTetris extends Plateau {
 	
 	private Integer score;
+	private Piece nextPiece;
 	
 	public PlateauTetris(){
 		super();
 		this.setScore(0);
+		this.setNextPiece(new Piece());
 	}
 	
 	public Integer getScore() {
@@ -20,6 +23,15 @@ public class PlateauTetris extends Plateau {
 	public void setScore(Integer score) {
 		this.score = score;
 	}
+	
+	public Piece getNextPiece() {
+		return nextPiece;
+	}
+
+	public void setNextPiece(Piece nextPiece) {
+		this.nextPiece = nextPiece;
+	}
+
 
 	public void checkLines() {
 		Grille new_grille = grille;

@@ -20,23 +20,27 @@ public class JeuTetris implements Runnable {
 		while(pl.getPieceCourante() != null && pl.isRunning()){
 
 			try {
-				Thread.sleep(1000);
+				if (pl.getScore() != 0){
+					Thread.sleep(1000 - (pl.getScore() * 2));
+				} else 
+					Thread.sleep(1000);
 				Piece pc = pl.getPieceCourante();
 				Ok = pc.translation(Translation.BAS,pl.getGrille());
 				if(Ok){
 					pl.setPiece(pc);
-				}
-				else {
+				} else {
 					pl.addPieceToGrille();
 					pl.checkLines();
-					pl.setPiece(new Piece());
+					pl.setPiece(pl.getNextPiece());	
+					pl.setNextPiece(new Piece());
 				}
+				
 				
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-
+		
 		System.out.println("You Lose!!!");
 		
 		
