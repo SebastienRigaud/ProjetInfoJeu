@@ -31,6 +31,7 @@ public class Piece {
 					{null,null,null,null}
 				};
 				taille = 4;
+				coordx = 3;
 				break;
 			//Carré
 			case 2:
@@ -40,6 +41,7 @@ public class Piece {
 					{new Case(color),new Case(color)}
 				};
 				taille = 2;
+				coordx = 4;
 				break;
 			//T
 			case 3:
@@ -50,6 +52,7 @@ public class Piece {
 					{null,null,null}
 				};
 				taille = 3;
+				coordx = 4;
 				break;
 			//L
 			case 4:
@@ -60,6 +63,7 @@ public class Piece {
 					{null,null,null}
 				};
 				taille = 3;
+				coordx = 4;
 				break;
 			//L inversé
 			case 5:
@@ -70,6 +74,7 @@ public class Piece {
 					{null,null,null}
 				};
 				taille = 3;
+				coordx = 4;
 				break;
 			//Biais
 			case 6:
@@ -80,6 +85,7 @@ public class Piece {
 					{null,null,null}
 				};
 				taille = 3;
+				coordx = 4;
 				break;
 			//Biais inversé
 			case 7:
@@ -90,9 +96,9 @@ public class Piece {
 					{null,null,null}
 				};
 				taille = 3;
+				coordx = 4;
 				break;
 		}
-		coordx = 7-taille;
 	}
 	
 	public boolean translation(Translation t, Grille grille){
