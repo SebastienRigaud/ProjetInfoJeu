@@ -90,7 +90,7 @@ public class VueP4 extends Application implements Observer {
 				switch (event.getCode()){
 				
 				case DOWN:
-					while(plateau.movePiece(Translation.BAS));					
+					//while(plateau.movePiece(Translation.BAS));					
 					break;
 				case LEFT:
 					plateau.movePiece(Translation.GAUCHE);

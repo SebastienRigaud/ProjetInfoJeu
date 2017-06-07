@@ -84,7 +84,7 @@ public class Plateau extends Observable {
 	 * Appelle la translation souhaitée.
 	 * @param type - Le type de translation (Tiré de l'énumération Translation).
 	 */
-	public void movePiece(Translation type) {
+	public boolean movePiece(Translation type) {
 		boolean b = true;
 		switch(type) {
 			case BAS:
@@ -99,7 +99,8 @@ public class Plateau extends Observable {
 				
 		}
 		setChanged();
-		notifyObservers();		
+		notifyObservers();
+		return b;
 	}
 
 	/**
