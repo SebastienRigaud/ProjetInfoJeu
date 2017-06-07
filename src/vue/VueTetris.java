@@ -280,7 +280,7 @@ public class VueTetris extends Application implements Observer {
 	/**
 	 * Récupère la couleur en fonction de la pièce.
 	 * @param pc - La pièce.
-	 * @return
+	 * @return La couleur de la pièce
 	 */
 	public Color computeColor(Piece pc){
 		Color color = null;
