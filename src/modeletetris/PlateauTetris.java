@@ -45,6 +45,9 @@ public class PlateauTetris extends Plateau {
 	}
 
 
+	/**
+	 * Vérifie les lignes complètes et descends toute les ligne au dessus chaque ligne enlevée
+	 */
 	public void checkLines() {
 		Grille new_grille = grille;
 		boolean oneEmpty;
@@ -72,6 +75,10 @@ public class PlateauTetris extends Plateau {
 		}
 	}
 	
+	/**
+	 * Initialise toutes les pièces liées au Tetris
+	 * @return la liste de toute les pièces
+	 */
 	public List<Case[][]> initPieces(){
 		listCase = new ArrayList<Case[][]>();
 		listCouleur = new ArrayList<Couleur>();
@@ -150,7 +157,10 @@ public class PlateauTetris extends Plateau {
 		return listCase;
 	}
 	
-	
+	/**
+	 * Vérifie si il est encore possible de'ajouter une pièce à la grille.
+	 * @return True si on perd
+	 */
 	public boolean checkLose(Piece piece){
 		for(int i=0; i<piece.getTaille(); i++){
 			for(int j=0; j<piece.getTaille(); j++){

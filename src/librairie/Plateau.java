@@ -55,6 +55,10 @@ public class Plateau extends Observable {
 		return piece;
 	}
 
+	
+	/**
+	 * Ajoute une pièce dans la grille
+	 */
 	public void addPieceToGrille() {
 		Grille new_grille = this.getGrille();
 		Case[][] new_cases = new_grille.getCases();
@@ -76,6 +80,10 @@ public class Plateau extends Observable {
 		return false;
 	}
 
+	/**
+	 * Appelle la translation souhaitée.
+	 * @param type - Le type de translation (Tiré de l'énumération Translation).
+	 */
 	public void movePiece(Translation type) {
 		switch(type) {
 			case BAS:
@@ -94,6 +102,10 @@ public class Plateau extends Observable {
 		
 	}
 
+	/**
+	 * Appelle la rotation souhaitée
+	 * @param type - Le type de rotation (Tiré de l'énumération Rotation)
+	 */
 	public void rotatePiece(Rotation type) {
 		switch(type){
 			case GAUCHE:

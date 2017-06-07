@@ -15,11 +15,20 @@ public class Piece {
 	private Couleur color;
 	
 	private int taille;
-	
+	/**
+	 * Constructeur par défaut
+	 */
 	public Piece(){
 		
 	}
-	
+	/**
+	 * Constructeur de pièces
+	 * @param cases - Tableau définissant la pièce
+	 * @param coordx - Coordonnées x d'apparition
+	 * @param coordy - Coordonnées y d'apparition
+	 * @param color - Couleur de la pièce
+	 * @param taille - Taille de la grille de la pièce
+	 */
 	public Piece(Case[][] cases, int coordx, int coordy, Couleur color, int taille){
 		this.cases = cases;
 		this.coordx=coordx;
@@ -27,7 +36,12 @@ public class Piece {
 		this.color=color;
 		this.taille = taille;
 	}
-	
+	/**
+	 * Translate une pièce dnas une grille selon le type de translation souhaité
+	 * @param t - Le type de Translation sougaité (Tiré de l'énmuération Translation)
+	 * @param grille - La grille dans laquelle la pièce translate
+	 * @return True si la translation est effectuée.
+	 */
 	public boolean translation(Translation t, Grille grille){
 		Case[][] grilleJeu = grille.getCases();
 		switch(t){
@@ -91,6 +105,12 @@ public class Piece {
 		return true;
 	}
 	
+	/**
+	 * Fait tourner la pièce sur elle même dans une grille donnée.
+	 * @param r - Le type de rotation souhaité (Tiré de l'énumération Rotation)
+	 * @param grille - La grille dans laquelle la pièce tourne
+	 * @return True si la rotation est effectuée.
+	 */
 	public boolean rotation(Rotation r, Grille grille){
 		Case[][] grilleJeu = grille.getCases();
 		switch (r){
@@ -129,6 +149,11 @@ public class Piece {
 		
 	}
 	
+	/**
+	 * Fais tourner la pièce à droite
+	 * @param input - Le tableau de case de la pièce
+	 * @return Le tableau de cases de la pièce tournée
+	 */
 	public Case[][] doRotationDroite(Case[][] input){
 
 		int n =input.length;
@@ -141,6 +166,11 @@ public class Piece {
 		return output;
 	}
 	
+	/**
+	 * Fais tourner la pièce à gauche
+	 * @param input - Le tableau de case de la pièce
+	 * @return Le tableau de cases de la pièces tournée
+	 */
 	public Case[][] doRotationGauche(Case[][] input){
 
 		int n =input.length;

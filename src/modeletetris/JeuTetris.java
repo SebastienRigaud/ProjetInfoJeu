@@ -14,6 +14,10 @@ public class JeuTetris implements Runnable {
 	}
 	
 
+	/**
+	 * Thread du jeu Tetris. Fais descendre une pièce toutes les seconde dans un plateau et vérifie si le sommet n'est pas
+	 * atteint. Augmente la vitesse de chute des picèes en fonction du score. Quand on ne peux plus jouer le jeu s'arrête.
+	 */
 	@Override
 	public void run() {
 		boolean Ok;

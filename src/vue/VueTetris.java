@@ -70,7 +70,7 @@ public class VueTetris extends Application implements Observer {
 	private Label textScoreLabel;
 	private Text scoreText;
 	private Text overText;
-
+	
 	@Override
 	public void start(Stage primaryStage) {
 
@@ -277,6 +277,11 @@ public class VueTetris extends Application implements Observer {
 		plateau.setRunning(false);
 	}
 	
+	/**
+	 * Récupère la couleur en fonction de la pièce.
+	 * @param pc - La pièce.
+	 * @return
+	 */
 	public Color computeColor(Piece pc){
 		Color color = null;
 		switch(pc.getColor()){
