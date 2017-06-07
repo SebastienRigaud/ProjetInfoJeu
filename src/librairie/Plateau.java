@@ -76,21 +76,23 @@ public class Plateau extends Observable {
 		return false;
 	}
 
-	public void movePiece(Translation type) {
+	public boolean movePiece(Translation type) {
+		boolean b = true;
 		switch(type) {
 			case BAS:
-				piece.translation(type, grille);
+				b = piece.translation(type, grille);
 				break;
 			case GAUCHE:
-				piece.translation(type, grille);
+				b = piece.translation(type, grille);
 				break;
 			case DROITE:
-				piece.translation(type, grille);
+				b = piece.translation(type, grille);
 				break;
 				
 		}
 		setChanged();
 		notifyObservers();
+		return b;
 		
 	}
 
